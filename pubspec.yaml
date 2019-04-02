@@ -10,5 +10,8 @@ author: Adaptant Labs <labs@adaptant.io>
 environment:
   sdk: '>=2.1.0 <3.0.0'
 
+dependencies:
+  meta: ^1.1.7
+
 dev_dependencies:
   test: ^1.0.0
