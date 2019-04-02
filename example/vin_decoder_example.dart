@@ -14,5 +14,4 @@ main() {
   print("Year is " + vin.getYear().toString());
   print("Region is " + vin.getRegion());
   print("VIN string is " + vin.toString());
-
 }

@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'dart:collection';
 import 'manufacturers.dart';
 
