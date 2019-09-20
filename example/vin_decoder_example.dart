@@ -1,7 +1,7 @@
 import 'package:vin_decoder/vin_decoder.dart';
 
-main() {
-  var vin = VIN(number: 'WP0ZZZ99ZTS392124');
+void main() async {
+  var vin = VIN(number: 'WP0ZZZ99ZTS392124', extended: true);
 
   print('WMI: ${vin.wmi}');
   print('VDS: ${vin.vds}');
@@ -14,4 +14,14 @@ main() {
   print("Year is " + vin.getYear().toString());
   print("Region is " + vin.getRegion());
   print("VIN string is " + vin.toString());
+
+  // The following calls are to the NHTSA DB, and are carried out asynchronously
+  var make = await vin.getMakeAsync();
+  print("Make is ${make}");
+
+  var model = await vin.getModelAsync();
+  print("Model is ${model}");
+
+  var type = await vin.getVehicleTypeAsync();
+  print("Type is ${type}");
 }
