@@ -99,7 +99,10 @@ class VIN {
 
   /// Get the full name of the vehicle manufacturer as defined by the [wmi].
   String getManufacturer() {
-    return manufacturers[this.wmi];
+    if (manufacturers.containsKey(this.wmi))
+      return manufacturers[this.wmi];
+    else
+      return "Unknown (WMI: ${this.wmi.toUpperCase()})";
   }
 
   /// Returns the checksum for the VIN. Note that in the case of the EU region

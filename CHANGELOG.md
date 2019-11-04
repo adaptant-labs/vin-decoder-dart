@@ -1,3 +1,7 @@
+## 0.1.1
+
+- Fix up manufacturer lookup for unknown WMIs
+
 ## 0.1.0
 
 - Extend decoder to optionally query the `NHTSA Vehicle API` to provide make, model,
