@@ -24,4 +24,7 @@ void main() async {
 
   var type = await vin.getVehicleTypeAsync();
   print("Type is ${type}");
+
+  var generated = VINGenerator().generate();
+  print('Randomly Generated VIN is ${generated}');
 }

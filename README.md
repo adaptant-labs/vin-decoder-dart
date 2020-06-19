@@ -4,14 +4,16 @@ vin-decoder-dart
 [![Build Status](https://travis-ci.com/adaptant-labs/vin-decoder-dart.svg?branch=master)](https://travis-ci.com/adaptant-labs/vin-decoder-dart#)
 [![Pub](https://img.shields.io/pub/v/vin_decoder.svg)](https://pub.dartlang.org/packages/vin_decoder)
 
-A VIN decoding and validation library for Dart.
+A VIN decoding, validation, and generation library for Dart.
 
 `vin_decoder` provides a simple decoding and validation library for Vehicle Identification Numbers (VINs) based on
-ISO 3779:2009 and World Manufacturer Identifiers (WMIs) based on ISO 3780:2009.
+ISO 3779:2009 and World Manufacturer Identifiers (WMIs) based on ISO 3780:2009. It further supports generation of
+synthetic VINs derived from valid WMIs.
 
 The decoder can be used standalone in an offline mode (the default behaviour, as per earlier versions of the API), or
 can be further enriched by querying additional VIN information from the [NHTSA Vehicle API][nhtsa], such as the precise
-make, model, and vehicle type in extended mode.
+make, model, and vehicle type in extended mode. Note that synthetic VINs will fail lookup in the NHTSA API, and should
+only be used for experimentation.
 
 [nhtsa]: https://vpic.nhtsa.dot.gov/api/Home
   
@@ -46,6 +48,9 @@ void main() async {
 
   var type = await vin.getVehicleTypeAsync();
   print("Type is ${type}");
+
+  var generated = VINGenerator().generate();
+  print('Randomly Generated VIN is ${generated}');
 }
 ```
 
@@ -65,6 +70,7 @@ VIN string is WP0ZZZ99ZTS392124
 Make is Porsche
 Model is 911
 Type is Passenger Car
+Randomly Generated VIN is NM4BW3NK0WA418856
 ```
 
 ## Features and bugs

@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Add support for VIN generation
+
 ## 0.1.1
 
 - Fix up manufacturer lookup for unknown WMIs

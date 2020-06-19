@@ -22,7 +22,6 @@ void main() {
     });
   });
 
-
   group('AS VIN Test', () {
     VIN vin;
 
