@@ -4,8 +4,8 @@ description:
   World Manufacturer Identifiers (WMIs) based on ISO 3780:2009, enriched by NHTSA data.
 
 version: 0.1.1
-homepage: https://github.com/adaptant-labs/vin-decoder-dart
-author: Adaptant Labs <labs@adaptant.io>
+repository: https://github.com/adaptant-labs/vin-decoder-dart
+issue_tracker: https://github.com/adaptant-labs/vin-decoder-dart/issues
 
 environment:
   sdk: '>=2.1.0 <3.0.0'
