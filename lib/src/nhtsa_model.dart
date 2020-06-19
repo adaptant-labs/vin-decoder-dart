@@ -83,7 +83,9 @@ class ExtendedVehicleInfo {
   String vehicleType;
 
   static Future<ExtendedVehicleInfo> getExtendedVehicleInfo(String vin) async {
-    var path = 'https://vpic.nhtsa.dot.gov/api//vehicles/DecodeVin/' + vin + '?format=json';
+    var path = 'https://vpic.nhtsa.dot.gov/api//vehicles/DecodeVin/' +
+        vin +
+        '?format=json';
     final response = await http.get(path);
 
     if (response.statusCode == 200) {
