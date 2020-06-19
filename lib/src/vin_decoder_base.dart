@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
-import 'dart:collection';
 import 'manufacturers.dart';
 import 'nhtsa_model.dart';
+import 'year_map.dart';
 
 class VIN {
   /// The VIN that the class was instantiated with.
@@ -38,40 +38,7 @@ class VIN {
 
   /// Obtain the encoded manufacturing year in YYYY format.
   int getYear() {
-    Map<String, int> map = HashMap<String, int>();
-
-    map['N'] = 1992;
-    map['P'] = 1993;
-    map['R'] = 1994;
-    map['S'] = 1995;
-    map['T'] = 1996;
-    map['V'] = 1997;
-    map['W'] = 1998;
-    map['X'] = 1999;
-    map['Y'] = 2000;
-    map['1'] = 2001;
-    map['2'] = 2002;
-    map['3'] = 2003;
-    map['4'] = 2004;
-    map['5'] = 2005;
-    map['6'] = 2006;
-    map['7'] = 2007;
-    map['8'] = 2008;
-    map['9'] = 2009;
-    map['A'] = 2010;
-    map['B'] = 2011;
-    map['C'] = 2012;
-    map['D'] = 2013;
-    map['E'] = 2014;
-    map['F'] = 2015;
-    map['G'] = 2016;
-    map['H'] = 2017;
-    map['J'] = 2018;
-    map['K'] = 2019;
-    map['L'] = 2020;
-    map['M'] = 2021;
-
-    return map[modelYear()];
+    return yearMap[modelYear()];
   }
 
   /// Obtain the 2-character region code for the manufacturing region.
