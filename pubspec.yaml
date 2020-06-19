@@ -1,8 +1,7 @@
 name: vin_decoder
 description:
-  A simple Dart library for decoding and validating Vehicle Identification Numbers (VINs) based on ISO 3779:2009 and
-  World Manufacturer Identifiers (WMIs) based on ISO 3780:2009. Further enriched by data obtained from the NHTSA
-  database.
+  Dart library for working with Vehicle Identification Numbers (VINs) based on ISO 3779:2009 and
+  World Manufacturer Identifiers (WMIs) based on ISO 3780:2009, enriched by NHTSA data.
 
 version: 0.1.1
 homepage: https://github.com/adaptant-labs/vin-decoder-dart
@@ -15,8 +14,8 @@ dependencies:
   # The Flutter SDK presently depends on v1.1.6 of the meta package, so we artificially
   # constrain the version number until this limitation is addressed in a future SDK update.
   meta: ^1.1.6
-  basic_utils: ^2.0.1
-  http: ^0.12.0+2
+  basic_utils: ^2.5.4
+  http: ^0.12.1
 
 dev_dependencies:
   test: ^1.0.0
