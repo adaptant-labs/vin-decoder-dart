@@ -91,7 +91,8 @@ class VIN {
 
   void _fetchExtendedVehicleInfo() async {
     if (this._info == null && extended == true) {
-      this._info = await ExtendedVehicleInfo.getExtendedVehicleInfo(this.number);
+      this._info =
+          await ExtendedVehicleInfo.getExtendedVehicleInfo(this.number);
     }
   }
 
