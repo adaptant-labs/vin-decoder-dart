@@ -16,7 +16,7 @@ dependencies:
   meta: ^1.1.6
   basic_utils: ^2.5.4
   http: ^0.12.1
-  random_string: ^2.0.1
+  random_string: ^2.1.0
 
 dev_dependencies:
   test: ^1.0.0
