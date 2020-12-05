@@ -11,12 +11,10 @@ environment:
   sdk: '>=2.1.0 <3.0.0'
 
 dependencies:
-  # The Flutter SDK presently depends on v1.1.6 of the meta package, so we artificially
-  # constrain the version number until this limitation is addressed in a future SDK update.
-  meta: ^1.1.6
-  basic_utils: ^2.5.4
-  http: ^0.12.1
-  random_string: ^2.0.1
+  meta: ^1.2.4
+  basic_utils: ^2.6.3
+  http: ^0.12.2
+  random_string: ^2.1.0
 
 dev_dependencies:
-  test: ^1.0.0
+  test: ^1.15.7
