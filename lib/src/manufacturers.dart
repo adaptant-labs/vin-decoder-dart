@@ -1,4 +1,4 @@
-final Map<String, String> manufacturers = {
+const manufacturers = <String, String>{
   'AAV': 'Volkswagen',
   'AC5': 'Hyundai',
   'ADD': 'Hyundai',
