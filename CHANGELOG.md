@@ -1,3 +1,8 @@
+## 0.1.3
+
+- Update dependencies
+- Switch from 'final' to 'const' for static map initializers
+
 ## 0.1.2
 
 - Add support for VIN generation
