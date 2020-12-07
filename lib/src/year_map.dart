@@ -1,4 +1,4 @@
-final Map<String, int> yearMap = {
+const yearMap = <String, int>{
   'N': 1992,
   'P': 1993,
   'R': 1994,
