@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'manufacturers.dart';
 import 'nhtsa_model.dart';
 import 'year_map.dart';
