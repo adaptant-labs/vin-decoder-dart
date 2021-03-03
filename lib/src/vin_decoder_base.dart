@@ -89,7 +89,7 @@ class VIN {
   /// Extract the serial number from the [number].
   String serialNumber() => normalize(this.number).substring(12, 17);
 
-  void _fetchExtendedVehicleInfo() async {
+  Future _fetchExtendedVehicleInfo() async {
     if (this._info == null && extended == true) {
       this._info =
           await ExtendedVehicleInfo.getExtendedVehicleInfo(this.number);
