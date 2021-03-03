@@ -18,16 +18,16 @@ class VIN {
 
   /// Try to obtain extended information for the VIN from the NHTSA database.
   final bool extended;
-  ExtendedVehicleInfo _info;
+  ExtendedVehicleInfo? _info;
 
-  VIN({@required this.number, this.extended = false})
+  VIN({required this.number, this.extended = false})
       : wmi = normalize(number).substring(0, 3),
         vds = normalize(number).substring(3, 9),
         vis = normalize(number).substring(9, 17);
 
   /// Carry out VIN validation. A valid [number] must be 17 characters long
   /// and contain only valid alphanumeric characters.
-  bool valid([String number]) {
+  bool valid([String? number]) {
     String value = normalize(number != null ? number : this.number);
     return RegExp(r"^[a-zA-Z0-9]+$").hasMatch(value) && value.length == 17;
   }
@@ -37,7 +37,7 @@ class VIN {
       number.toUpperCase().replaceAll('-', '');
 
   /// Obtain the encoded manufacturing year in YYYY format.
-  int getYear() {
+  int? getYear() {
     return yearMap[modelYear()];
   }
 
@@ -65,7 +65,7 @@ class VIN {
   }
 
   /// Get the full name of the vehicle manufacturer as defined by the [wmi].
-  String getManufacturer() {
+  String? getManufacturer() {
     if (manufacturers.containsKey(this.wmi)) {
       return manufacturers[this.wmi];
     } else {
@@ -76,7 +76,7 @@ class VIN {
   /// Returns the checksum for the VIN. Note that in the case of the EU region
   /// checksums are not implemented, so this becomes a no-op. More information
   /// is provided in ISO 3779:2009.
-  String getChecksum() {
+  String? getChecksum() {
     return (getRegion() != "EU") ? normalize(this.number)[8] : null;
   }
 
@@ -98,21 +98,21 @@ class VIN {
 
   /// Get the Make of the vehicle from the NHTSA database if [extended] mode
   /// is enabled.
-  Future<String> getMakeAsync() async {
+  Future<String?> getMakeAsync() async {
     await _fetchExtendedVehicleInfo();
     return this._info?.make;
   }
 
   /// Get the Model of the vehicle from the NHTSA database if [extended] mode
   /// is enabled.
-  Future<String> getModelAsync() async {
+  Future<String?> getModelAsync() async {
     await _fetchExtendedVehicleInfo();
     return this._info?.model;
   }
 
   /// Get the Vehicle Type from the NHTSA database if [extended] mode is
   /// enabled.
-  Future<String> getVehicleTypeAsync() async {
+  Future<String?> getVehicleTypeAsync() async {
     await _fetchExtendedVehicleInfo();
     return this._info?.vehicleType;
   }

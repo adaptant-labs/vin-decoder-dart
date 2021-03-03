@@ -10,7 +10,7 @@ void main() async {
   print("Model year is " + vin.modelYear());
   print("Serial number is " + vin.serialNumber());
   print("Assembly plant is " + vin.assemblyPlant());
-  print("Manufacturer is " + vin.getManufacturer());
+  print("Manufacturer is " + vin.getManufacturer()!);
   print("Year is " + vin.getYear().toString());
   print("Region is " + vin.getRegion());
   print("VIN string is " + vin.toString());

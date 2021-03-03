@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('EU VIN Test', () {
-    VIN vin;
+    late VIN vin;
 
     setUp(() {
       vin = VIN(number: 'WP0ZZZ99ZTS392124');
@@ -23,7 +23,7 @@ void main() {
   });
 
   group('AS VIN Test', () {
-    VIN vin;
+    late VIN vin;
 
     setUp(() {
       vin = VIN(number: 'JS1VX51L7X2175460');
