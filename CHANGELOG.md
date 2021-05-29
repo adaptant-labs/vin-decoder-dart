@@ -1,4 +1,4 @@
-## 0.2.1
+## 0.2.1-nullsafety
 
 - Support VINs with 2-character manufacturer IDs in their WMI (reported by @huangkaichang, issue #7)
 
