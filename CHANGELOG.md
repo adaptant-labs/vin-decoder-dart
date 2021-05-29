@@ -1,3 +1,7 @@
+## 0.1.4+1
+
+- Revert null-safety changes from stable release to satisfy SDK constraints
+
 ## 0.1.4
 
 - Support VINs with 2-character manufacturer IDs in their WMI (reported by @huangkaichang, issue #7)

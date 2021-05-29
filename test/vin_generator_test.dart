@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('VIN Generator Test', () {
     VINGenerator generator;
-    late VIN vin;
+    VIN vin;
 
     setUp(() {
       generator = VINGenerator();

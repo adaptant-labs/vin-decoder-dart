@@ -3,11 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('EU VIN Test', () {
-    late VIN vin;
-
-    setUp(() {
-      vin = VIN(number: 'WP0ZZZ99ZTS392124');
-    });
+    final vin = VIN(number: 'WP0ZZZ99ZTS392124');
 
     test('Validity Test', () {
       expect(vin.valid(), isTrue);
@@ -23,11 +19,7 @@ void main() {
   });
 
   group('AS VIN Test', () {
-    late VIN vin;
-
-    setUp(() {
-      vin = VIN(number: 'JS1VX51L7X2175460');
-    });
+    final vin = VIN(number: 'JS1VX51L7X2175460');
 
     test('Validity Test', () {
       expect(vin.valid(), isTrue);
@@ -39,13 +31,9 @@ void main() {
   });
 
   group('2-character WMI Manufacturer Test', () {
-    late VIN vin;
-
-    setUp(() {
-      // Here the first 2 characters refer to the manufacturer, with the 3rd
-      // representing the class of vehicle specific to that manufacturer.
-      vin = VIN(number: '5TENL42N94Z436445');
-    });
+    // Here the first 2 characters refer to the manufacturer, with the 3rd
+    // representing the class of vehicle specific to that manufacturer.
+    final vin = VIN(number: '5TENL42N94Z436445');
 
     test('Validity Test', () {
       expect(vin.valid(), isTrue);

@@ -1,4 +1,5 @@
 /// Support for VIN parsing, validation, and generation.
+// @dart=2.9
 
 library vin_decoder;
 

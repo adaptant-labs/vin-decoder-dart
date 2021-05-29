@@ -3,10 +3,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class NHTSAResult {
-  String? value;
-  String? valueId;
-  String? variable;
-  int? variableId;
+  String value;
+  String valueId;
+  String variable;
+  int variableId;
 
   NHTSAResult({this.value, this.valueId, this.variable, this.variableId});
 
@@ -24,10 +24,10 @@ class NHTSAResult {
 }
 
 class NHTSAVehicleInfo {
-  int? count;
-  String? message;
-  String? searchCriteria;
-  List<NHTSAResult>? results;
+  int count;
+  String message;
+  String searchCriteria;
+  List<NHTSAResult> results;
 
   NHTSAVehicleInfo(
       {this.count, this.message, this.searchCriteria, this.results});
@@ -37,10 +37,10 @@ class NHTSAVehicleInfo {
     message = json['Message'];
     searchCriteria = json['SearchCriteria'];
     if (json['Results'] != null) {
-      results = [];
+      results = List<NHTSAResult>();
       json['Results'].forEach((v) {
         if (v['Value'] != null) {
-          results!.add(NHTSAResult.fromJson(v));
+          results.add(NHTSAResult.fromJson(v));
         }
       });
     }
@@ -54,16 +54,16 @@ class NHTSAVehicleInfo {
   ExtendedVehicleInfo toExtendedVehicleInfo() {
     final ExtendedVehicleInfo info = ExtendedVehicleInfo();
 
-    results!.forEach((f) {
+    results.forEach((f) {
       switch (f.variable) {
         case "Vehicle Type":
-          info.vehicleType = normalizeStringValue(f.value!);
+          info.vehicleType = normalizeStringValue(f.value);
           break;
         case "Make":
-          info.make = normalizeStringValue(f.value!);
+          info.make = normalizeStringValue(f.value);
           break;
         case "Model":
-          info.model = normalizeStringValue(f.value!);
+          info.model = normalizeStringValue(f.value);
           break;
       }
     });
@@ -78,12 +78,12 @@ class NHTSAVehicleInfo {
 }
 
 class ExtendedVehicleInfo {
-  String? make;
-  String? model;
-  String? vehicleType;
+  String make;
+  String model;
+  String vehicleType;
 
-  static Future<ExtendedVehicleInfo?> getExtendedVehicleInfo(String vin) async {
-    var path = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/' +
+  static Future<ExtendedVehicleInfo> getExtendedVehicleInfo(String vin) async {
+    var path = 'https://vpic.nhtsa.dot.gov/api//vehicles/DecodeVin/' +
         vin +
         '?format=json';
     final response = await http.get(Uri.parse(path));
