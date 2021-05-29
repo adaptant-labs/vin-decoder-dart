@@ -1,3 +1,7 @@
+## 0.1.4
+
+- Support VINs with 2-character manufacturer IDs in their WMI (reported by @huangkaichang, issue #7)
+
 ## 0.1.3
 
 - Update dependencies

@@ -65,10 +65,18 @@ class VIN {
 
   /// Get the full name of the vehicle manufacturer as defined by the [wmi].
   String? getManufacturer() {
+    // Check for the standard case - a 3 character WMI
     if (manufacturers.containsKey(this.wmi)) {
       return manufacturers[this.wmi];
     } else {
-      return "Unknown (WMI: ${this.wmi.toUpperCase()})";
+      // Some manufacturers only use the first 2 characters for manufacturer
+      // identification, and the third for the class of vehicle.
+      var id = this.wmi.substring(0, 2);
+      if (manufacturers.containsKey(id)) {
+        return manufacturers[id];
+      } else {
+        return "Unknown (WMI: ${this.wmi.toUpperCase()})";
+      }
     }
   }
 
