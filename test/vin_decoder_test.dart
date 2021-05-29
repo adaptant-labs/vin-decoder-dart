@@ -37,4 +37,26 @@ void main() {
       expect(vin.getRegion(), 'AS');
     });
   });
+
+  group('2-character WMI Manufacturer Test', () {
+    late VIN vin;
+
+    setUp(() {
+      // Here the first 2 characters refer to the manufacturer, with the 3rd
+      // representing the class of vehicle specific to that manufacturer.
+      vin = VIN(number: '5TENL42N94Z436445');
+    });
+
+    test('Validity Test', () {
+      expect(vin.valid(), isTrue);
+    });
+
+    test('Region Test', () {
+      expect(vin.getRegion(), 'NA');
+    });
+
+    test('Manufacturer Test', () {
+      expect(vin.getManufacturer(), 'Toyota - trucks');
+    });
+  });
 }

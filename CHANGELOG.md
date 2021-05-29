@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Support VINs with 2-character manufacturer IDs in their WMI (reported by @huangkaichang, issue #7)
+
 ## 0.2.0-nullsafety
 
 - Migrate for null safety
