@@ -3,7 +3,7 @@ description:
   Dart library for working with Vehicle Identification Numbers (VINs) based on ISO 3779:2009 and
   World Manufacturer Identifiers (WMIs) based on ISO 3780:2009, enriched by NHTSA data.
 
-version: 0.2.1
+version: 0.2.1-nullsafety
 repository: https://github.com/adaptant-labs/vin-decoder-dart
 issue_tracker: https://github.com/adaptant-labs/vin-decoder-dart/issues
 
