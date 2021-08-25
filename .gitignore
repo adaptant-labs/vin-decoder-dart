@@ -5,9 +5,10 @@
 # Remove the following pattern if you wish to check in your lock file
 pubspec.lock
 
-# IntelliJ
+# IntelliJ / IDEs
 *.iml
 .idea/
+.vscode/
 
 # Conventional directory for build outputs
 build/
