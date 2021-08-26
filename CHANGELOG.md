@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Expose helpers for querying NHTSA DB and accessing extended vehicle information (requested by @ride4sun, issue #8)
+
 ## 0.1.4+1
 
 - Revert null-safety changes from stable release to satisfy SDK constraints

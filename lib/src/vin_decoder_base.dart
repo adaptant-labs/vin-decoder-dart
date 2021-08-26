@@ -19,7 +19,7 @@ class VIN {
 
   /// Try to obtain extended information for the VIN from the NHTSA database.
   final bool extended;
-  ExtendedVehicleInfo _info;
+  Map<String, dynamic> _vehicleInfo = {};
 
   VIN({@required this.number, this.extended = false})
       : wmi = normalize(number).substring(0, 3),
@@ -98,10 +98,9 @@ class VIN {
   /// Extract the serial number from the [number].
   String serialNumber() => normalize(this.number).substring(12, 17);
 
-  Future _fetchExtendedVehicleInfo() async {
-    if (this._info == null && extended == true) {
-      this._info =
-          await ExtendedVehicleInfo.getExtendedVehicleInfo(this.number);
+  Future<void> _fetchExtendedVehicleInfo() async {
+    if (this._vehicleInfo.isEmpty && extended == true) {
+      this._vehicleInfo = await NHTSA.decodeVinValues(this.number);
     }
   }
 
@@ -109,21 +108,21 @@ class VIN {
   /// is enabled.
   Future<String> getMakeAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._info?.make;
+    return this._vehicleInfo['Make'];
   }
 
   /// Get the Model of the vehicle from the NHTSA database if [extended] mode
   /// is enabled.
   Future<String> getModelAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._info?.model;
+    return this._vehicleInfo['Model'];
   }
 
   /// Get the Vehicle Type from the NHTSA database if [extended] mode is
   /// enabled.
   Future<String> getVehicleTypeAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._info?.vehicleType;
+    return this._vehicleInfo['VehicleType'];
   }
 
   @override
