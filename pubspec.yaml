@@ -12,8 +12,8 @@ environment:
 
 dependencies:
   meta: ^1.4.0
-  basic_utils: ^2.7.1
-  http: ^0.12.2
+  basic_utils: ^3.4.0
+  http: ^0.13.3
   random_string: ^2.1.0
 
 dev_dependencies:
