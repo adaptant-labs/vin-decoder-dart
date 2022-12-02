@@ -10,6 +10,13 @@
 
 - Support VINs with 2-character manufacturer IDs in their WMI (reported by @huangkaichang, issue #7)
 - Fix Uri parsing for NHTSA DB REST API
+## 0.2.1-nullsafety
+
+- Support VINs with 2-character manufacturer IDs in their WMI (reported by @huangkaichang, issue #7)
+
+## 0.2.0-nullsafety
+
+- Migrate for null safety
 
 ## 0.1.3
 

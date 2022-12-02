@@ -66,7 +66,7 @@ class VIN {
   }
 
   /// Get the full name of the vehicle manufacturer as defined by the [wmi].
-  String getManufacturer() {
+  String? getManufacturer() {
     // Check for the standard case - a 3 character WMI
     if (manufacturers.containsKey(this.wmi)) {
       return manufacturers[this.wmi];
