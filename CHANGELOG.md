@@ -1,3 +1,6 @@
+## 0.2.1
+- Migrated completely to nullsafety
+
 ## 0.2.0
 
 - Expose helpers for querying NHTSA DB and accessing extended vehicle information (requested by @ride4sun, issue #8)

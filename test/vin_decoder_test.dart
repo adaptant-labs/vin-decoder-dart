@@ -1,4 +1,4 @@
-import 'package:vin_decoder/vin_decoder.dart';
+import 'package:custom_vin_decoder/vin_decoder.dart';
 import 'package:test/test.dart';
 
 void main() {
