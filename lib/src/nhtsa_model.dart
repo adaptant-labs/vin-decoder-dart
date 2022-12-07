@@ -93,14 +93,14 @@ class NHTSAVehicleInfo {
         if (v['Value'] != null &&
             v['Value'] != _RESULT_NOT_APPLICABLE &&
             v['Value'] != '') {
-          results.add(NHTSAResult.fromJson(v));
+          results.add(NHTSAResult.fromJson(v as Map<String, dynamic>));
         }
       });
     }
     return NHTSAVehicleInfo(
       count: (json['Count'] as int?) ?? 0,
-      message: json['Message'] as String? ?? "",
-      searchCriteria: json['SearchCriteria'],
+      message: (json['Message'] as String?) ?? "",
+      searchCriteria:( json['SearchCriteria'] as String?) ?? "",
       results: results
     );
   }

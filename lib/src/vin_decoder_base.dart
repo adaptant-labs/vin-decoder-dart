@@ -123,30 +123,30 @@ class VIN {
   /// is enabled.
   Future<String> getMakeAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['Make'];
+    return this._vehicleInfo['Make'] as String? ?? "";
   }
 
   /// Get the Make ID of a vehicle from the NHTSA database if the [extended] mode is enabled
   Future<int> getMakeIdAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo["MakeID"];
+    return this._vehicleInfo["MakeID"] as int? ?? 0;
   }
 
   /// Get the Model of the vehicle from the NHTSA database if [extended] mode is enabled.
   Future<String> getModelAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['Model'];
+    return this._vehicleInfo['Model'] as String? ?? "";
   }
 
   Future<String> getModelIdAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['ModelID'];
+    return this._vehicleInfo['ModelID'] as String? ?? "";
   }
 
   /// Get the Vehicle Type from the NHTSA database if [extended] mode is enabled.
   Future<String> getVehicleTypeAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['VehicleType'];
+    return this._vehicleInfo['VehicleType'] as String? ?? "";
   }
 
   @override
