@@ -8,7 +8,7 @@ void main() {
 
     setUp(() {
       generator = VINGenerator();
-      vin = VIN(number: generator.generate());
+      vin = VIN(vin: generator.generate());
     });
 
     test('Validity Test', () {

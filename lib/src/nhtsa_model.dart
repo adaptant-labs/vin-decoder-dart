@@ -85,7 +85,7 @@ class NHTSAVehicleInfo {
   NHTSAVehicleInfo(
       {required this.count, required this.message, required this.searchCriteria, required this.results});
 
-  /// Create a new [NHTSAVehicleInfo] instance from a fixed JSON payload
+  /// Create a new [NHTSAVehicleInfo] instance from a fixed JSON payload.
   factory NHTSAVehicleInfo.fromJson(Map<String, dynamic> json) {
     List<NHTSAResult> results = [];
     if (json['Results'] != null) {

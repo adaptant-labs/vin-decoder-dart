@@ -2,7 +2,7 @@ import 'package:custom_vin_decoder/nhtsa.dart';
 import 'package:custom_vin_decoder/vin_decoder.dart';
 
 void main() async {
-  var vin = VIN(number: 'WP0ZZZ99ZTS392124', extended: true);
+  var vin = VIN(vin: 'WP0ZZZ99ZTS392124', extended: true);
 
   print('WMI: ${vin.wmi}');
   print('VDS: ${vin.vds}');
