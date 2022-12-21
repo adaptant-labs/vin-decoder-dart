@@ -135,18 +135,18 @@ class VIN {
   /// Get the Model of the vehicle from the NHTSA database if [extended] mode is enabled.
   Future<String> getModelAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['Model'] as String? ?? "";
+    return this._vehicleInfo['Model'] as String? ?? "Unknown";
   }
 
   Future<String> getModelIdAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['ModelID'] as String? ?? "";
+    return this._vehicleInfo['ModelID'] as String? ?? "Unknown";
   }
 
   /// Get the Vehicle Type from the NHTSA database if [extended] mode is enabled.
   Future<String> getVehicleTypeAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo['VehicleType'] as String? ?? "";
+    return this._vehicleInfo['VehicleType'] as String? ?? "0";
   }
 
   @override
