@@ -8,7 +8,7 @@ repository: https://github.com/adaptant-labs/vin-decoder-dart
 issue_tracker: https://github.com/adaptant-labs/vin-decoder-dart/issues
 
 environment:
-  sdk: '>=2.12.0 < 3.0.0'
+  sdk: '>=2.12.0 <3.0.0' # Important no space allowed between math operator and the numeric digit so < 3 is not the same as <3
 
 dependencies:
   meta: ^1.8.0
