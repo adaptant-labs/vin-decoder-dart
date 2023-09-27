@@ -129,7 +129,7 @@ class VIN {
   /// Get the Make ID of a vehicle from the NHTSA database if the [extended] mode is enabled
   Future<int> getMakeIdAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._vehicleInfo.keys.contains("MakeID") ? this._vehicleInfo["MakeID"] as int? ?? 0 : 0;
+    return this._vehicleInfo.keys.contains("MakeID") ? int.parse(this._vehicleInfo["MakeID"]): 0;
   }
 
   /// Get the Model of the vehicle from the NHTSA database if [extended] mode is enabled.
