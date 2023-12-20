@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'manufacturers.dart';
 import 'nhtsa_model.dart';
 import 'year_map.dart';
@@ -117,6 +119,28 @@ class VIN {
     if (this._vehicleInfo.isEmpty && extended == true) {
       this._vehicleInfo = await NHTSA.decodeVinValues(this.number) ?? {};
     }
+  }
+
+  /// Get the fuel type of the vehicle from the NHTSA database if [extended] mode
+  /// is enabled.
+  Future<int> getFuelTypeAsync() async {
+    await _fetchExtendedVehicleInfo();
+    String fuelType = this._vehicleInfo['FuelTypePrimary'] as String? ?? "";
+    Map<String, int> fuels = HashMap(); //Hashmap containing fuel names and their respective #
+    fuels["Diesel"] = 1;
+    fuels["CNG"] = 6;
+    fuels["Gasoline"] = 4;
+    fuels["Battery"] = 2;
+    fuels["LNG"] = 7;
+    fuels["Hydrogen"] = 8;
+    fuels["LPG"] = 9;
+    fuels["E85"] = 10;
+    fuels["E100"] = 11;
+    fuels["M85"] = 13;
+    fuels["M100"] = 14;
+    fuels["FFV"] = 15;
+    int fuelTypeNumber = fuels[fuelType] ?? 0;
+    return fuelTypeNumber;
   }
 
   /// Get the Make of the vehicle from the NHTSA database if [extended] mode
