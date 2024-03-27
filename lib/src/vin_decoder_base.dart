@@ -9,6 +9,7 @@ class VIN {
     "CNG": 6,
     "Gasoline": 4,
     "Battery": 2,
+    "BEV":2,
     "LNG": 7,
     "Hydrogen": 8,
     "LPG": 9,
@@ -16,7 +17,9 @@ class VIN {
     "E100": 11,
     "M85": 13,
     "M100": 14,
-    "FFV": 15
+    "FFV": 15,
+    "FCEV":18,
+    "Fuel Cell": 18
   };
 
   /// The VIN that the class was instantiated with.
