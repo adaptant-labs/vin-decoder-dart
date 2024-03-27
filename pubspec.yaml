@@ -1,17 +1,18 @@
-name: vin_decoder
+name: custom_vin_decoder
 description:
   Dart library for working with Vehicle Identification Numbers (VINs) based on ISO 3779:2009 and
   World Manufacturer Identifiers (WMIs) based on ISO 3780:2009, enriched by NHTSA data.
 
-version: 0.2.1-nullsafety
+version: 0.2.1
 repository: https://github.com/adaptant-labs/vin-decoder-dart
 issue_tracker: https://github.com/adaptant-labs/vin-decoder-dart/issues
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0' # Important no space allowed between math operator and the numeric digit so < 3 is not the same as <3
 
 dependencies:
-  basic_utils: ^3.1.0
+  meta: ^1.8.0
+  basic_utils: ^3.4.0
   http: ^0.13.3
   random_string: ^2.2.0-nullsafety
 

@@ -1,7 +1,7 @@
 vin-decoder-dart
 ================
 
-[![Build Status](https://travis-ci.com/adaptant-labs/vin-decoder-dart.svg?branch=master)](https://travis-ci.com/adaptant-labs/vin-decoder-dart#)
+[![Build Status](https://travis-ci.com/adaptant-labs/vin-decoder-dart.svg?branch=master)](https://app.travis-ci.com/github/adaptant-labs/vin-decoder-dart)
 [![Pub](https://img.shields.io/pub/v/vin_decoder.svg)](https://pub.dartlang.org/packages/vin_decoder)
 
 A VIN decoding, validation, and generation library for Dart.

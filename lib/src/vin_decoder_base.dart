@@ -3,6 +3,25 @@ import 'nhtsa_model.dart';
 import 'year_map.dart';
 
 class VIN {
+  /// Hashmap containing fuel names and their respective #
+  static const Map<String, int> fuelMap = {
+    "Diesel": 1,
+    "CNG": 6,
+    "Gasoline": 4,
+    "Battery": 2,
+    "BEV":2,
+    "LNG": 7,
+    "Hydrogen": 8,
+    "LPG": 9,
+    "E85": 10,
+    "E100": 11,
+    "M85": 13,
+    "M100": 14,
+    "FFV": 15,
+    "FCEV":18,
+    "Fuel Cell": 18
+  };
+
   /// The VIN that the class was instantiated with.
   final String number;
 
@@ -17,15 +36,27 @@ class VIN {
 
   /// Try to obtain extended information for the VIN from the NHTSA database.
   final bool extended;
-  ExtendedVehicleInfo? _info;
+  Map<String, dynamic> _vehicleInfo = {};
 
-  VIN({required this.number, this.extended = false})
-      : wmi = normalize(number).substring(0, 3),
-        vds = normalize(number).substring(3, 9),
-        vis = normalize(number).substring(9, 17);
+  /// Private named constructor. Creates a new VIN. 
+  /// 
+  /// [wmi], [vds], and [vis] are populated based on [number]. 
+  VIN._({required this.number, required this.extended}) : 
+    wmi = number.substring(0, 3),
+    vds = number.substring(3, 9),
+    vis = number.substring(9, 17);
+
+  /// Creates a new VIN. 
+  /// 
+  /// This factory constructor makes sure the string is normallyed 
+  factory VIN({required String vin, bool extended = false}){
+    return VIN._(number: normalize(vin), extended: extended);
+  }
 
   /// Carry out VIN validation. A valid [number] must be 17 characters long
   /// and contain only valid alphanumeric characters.
+  /// 
+  /// If a number is provided, validates that number. Otherwise, it validates the number this object was initialized with.
   bool valid([String? number]) {
     String value = normalize(number != null ? number : this.number);
     return RegExp(r"^[a-zA-Z0-9]+$").hasMatch(value) && value.length == 17;
@@ -36,8 +67,8 @@ class VIN {
       number.toUpperCase().replaceAll('-', '');
 
   /// Obtain the encoded manufacturing year in YYYY format.
-  int? getYear() {
-    return yearMap[modelYear()];
+  int getYear() {
+    return yearMap[modelYear()] ?? 2001;
   }
 
   /// Obtain the 2-character region code for the manufacturing region.
@@ -64,6 +95,8 @@ class VIN {
   }
 
   /// Get the full name of the vehicle manufacturer as defined by the [wmi].
+  /// 
+  /// If the full name cannot be found, returns null.
   String? getManufacturer() {
     // Check for the standard case - a 3 character WMI
     if (manufacturers.containsKey(this.wmi)) {
@@ -75,7 +108,7 @@ class VIN {
       if (manufacturers.containsKey(id)) {
         return manufacturers[id];
       } else {
-        return "Unknown (WMI: ${this.wmi.toUpperCase()})";
+        return null;
       }
     }
   }
@@ -83,45 +116,72 @@ class VIN {
   /// Returns the checksum for the VIN. Note that in the case of the EU region
   /// checksums are not implemented, so this becomes a no-op. More information
   /// is provided in ISO 3779:2009.
+  /// 
+  /// If the region is EU, returns null
   String? getChecksum() {
-    return (getRegion() != "EU") ? normalize(this.number)[8] : null;
+    return (getRegion() != "EU") ? this.number[8] : null;
   }
 
   /// Extract the single-character model year from the [number].
-  String modelYear() => normalize(this.number)[9];
+  String modelYear() => this.number[9];
 
   /// Extract the single-character assembly plant designator from the [number].
-  String assemblyPlant() => normalize(this.number)[10];
+  String assemblyPlant() => this.number[10];
 
   /// Extract the serial number from the [number].
-  String serialNumber() => normalize(this.number).substring(12, 17);
+  String serialNumber() => this.number.substring(12, 17);
 
-  Future _fetchExtendedVehicleInfo() async {
-    if (this._info == null && extended == true) {
-      this._info =
-          await ExtendedVehicleInfo.getExtendedVehicleInfo(this.number);
+  /// Assigns the 
+  Future<void> _fetchExtendedVehicleInfo() async {
+    if (this._vehicleInfo.isEmpty && extended == true) {
+      this._vehicleInfo = await NHTSA.decodeVinValues(this.number) ?? {};
     }
+  }
+
+  /// Get the fuel type of the vehicle from the NHTSA database if [extended] mode
+  /// is enabled.
+  Future<int> getFuelTypeAsync() async {
+    await _fetchExtendedVehicleInfo();
+    final String? fuelType = this._vehicleInfo['FuelTypePrimary'] as String?;
+    if (fuelType == null) return 0;
+    
+    final String fuelLower = fuelType.toLowerCase();
+    for (final String fuelKey in fuelMap.keys) {
+      if (fuelLower.contains(fuelKey.toLowerCase())) {
+        return fuelMap[fuelKey]!;
+      }
+    }
+    return 0;
   }
 
   /// Get the Make of the vehicle from the NHTSA database if [extended] mode
   /// is enabled.
-  Future<String?> getMakeAsync() async {
+  Future<String> getMakeAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._info?.make;
+    return this._vehicleInfo['Make'] as String? ?? "";
   }
 
-  /// Get the Model of the vehicle from the NHTSA database if [extended] mode
-  /// is enabled.
-  Future<String?> getModelAsync() async {
+  /// Get the Make ID of a vehicle from the NHTSA database if the [extended] mode is enabled
+  Future<int> getMakeIdAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._info?.model;
+    return this._vehicleInfo.keys.contains("MakeID") ? int.parse(this._vehicleInfo["MakeID"]): 0;
   }
 
-  /// Get the Vehicle Type from the NHTSA database if [extended] mode is
-  /// enabled.
-  Future<String?> getVehicleTypeAsync() async {
+  /// Get the Model of the vehicle from the NHTSA database if [extended] mode is enabled.
+  Future<String> getModelAsync() async {
     await _fetchExtendedVehicleInfo();
-    return this._info?.vehicleType;
+    return (this._vehicleInfo.keys.contains("Model") ? this._vehicleInfo['Model'] as String? ?? "Unknown": "Unknown");
+  }
+
+  Future<String> getModelIdAsync() async {
+    await _fetchExtendedVehicleInfo();
+    return (this._vehicleInfo.keys.contains("ModelID") ? this._vehicleInfo['ModelID'] as String? ?? "Unknown": "Unknown");
+  }
+
+  /// Get the Vehicle Type from the NHTSA database if [extended] mode is enabled.
+  Future<String> getVehicleTypeAsync() async {
+    await _fetchExtendedVehicleInfo();
+    return (this._vehicleInfo.keys.contains("VehicleType") ? this._vehicleInfo['VehicleType'] as String? ?? "0": "0");
   }
 
   @override
